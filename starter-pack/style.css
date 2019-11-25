@@ -6,7 +6,6 @@
 body {
     margin: 0;
     padding: 0;
-    color: white;
 }
 
 a{
@@ -24,14 +23,7 @@ ul {
     padding: 0;
 }
 
-/*
-ZAGADNIENIE PONADPROGRAMOWE
-
-Rekomendowany zestaw właściwości, które pozwalają na ukrycie tekstu w taki sposób,
-że będzie niewidoczny do standardowego użytkownika, a czytniki ekranowe wciąż będą go czytać.
-
-Więcej na ten temat: https://webaim.org/techniques/css/invisiblecontent/
-*/
+/* Screen readers */
 .screen-reader-only {
     position: absolute;
     left: -10000px;
@@ -41,82 +33,27 @@ Więcej na ten temat: https://webaim.org/techniques/css/invisiblecontent/
     overflow: hidden;
 }
 
-/*
-Sekcja pomocnicza, aby zwizualizować pozycje głównych bloków strony. Będzie usunięta w następnych krokach.
-*/
 
-
-.page-content {
-    background-color: ;
-}
-
-.page-footer {
-    background-color: RGB(32, 11, 42);
-}
-
-.content-section {
-    background-color: RGB(24, 4, 32);
-}
-.content-section:nth-child(odd) {
-    background-color: RGB(37, 13, 49);
-}
-/*
-Koniec sekcji pomocniczej
-*/
-
-
-.page-header {
-    position: fixed;
-    top: 50px;
-    left: 50px;
-    z-index: 1;
-}
-
-.page-footer {
-    position: fixed;
-    bottom: 50px;
-    left: 50px;
-}
-
-/*
-Lewy margines ustawiony na kontenerze z główną zawartością strony sprawia,
-że nie będzie ona nachodzić na nagłówek i stopkę niezależnie od pozycji paska przewijania.
-Na projekcie graficznym sekcja menu ma szerokość około 170px i jest oddalona od krawędzi ekranu
-o 50px, więc można założyć, że 220px marginesu będzie wartością stosunkowo bezpieczną.
-Z kolei spady (padding) nadane na kontener wyznaczają minimalną odległość, na jaką będzie oddalona
-treść strony od otaczających ją granic kontenera (wartość "0 10%" jest
-skrótem od padding-top: 0, padding-bottom: 0, padding-left: 10%, padding-right: 10%).
-Właściwość "text-align: right" przykleja zawartość do prawej strony
-(oddziałuje na elementy, które są elementami inline'owymi, np. tekst, znaczniki <a>, <span> czy elementy z nadanym stylem "display: inline-block").
-*/
-.content-section {
-    /* margin-left: 220px; */
-    padding: 0 5% 0 30%;
-}
-
-/*
-Projekt graficzny zakłada, że każda sekcja strony będzie wypełniać całą wysokość okna przeglądarki
-lub więcej, jeśli zawartość danej sekcji jest wyższa. Dlatego świetnym rozwiązaniem
-będzie użycie jednostki "vh", która oznacza 1% wysokości okna przeglądarki z właściwością "min-height",
-która wymusza wysokość elementu na zadaną wartość lub wyższą.
-*/
+/* Every Section has 100% height */
 .content-section {
     min-height: 100vh;
 }
 
 
-/* ------------------------------------------------------------------------------------ */
-/* Starts  */
-/* ------------------------------------------------------------------------------------ */
-
 /* General  */
+.content-section {
+    padding: 0 5% 0 20%;
+}
 
 .content-section__header{
-    padding: 7% 0 3% 0 ;
+    padding: 10% 0 4% 0 ;
 }
 
 body{
     font-family:  "Helvetica", "OpenSans";
+    background-image: url(/starter-pack/images/background.svg);
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 
@@ -139,6 +76,13 @@ h2 {
 
 
 /* Nav  */
+.page-header {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    z-index: 1;
+}
+
 .page-navigation__items{
     margin-top:20px;
 }
@@ -149,19 +93,21 @@ h2 {
     line-height: 30px;
     font-weight: 700;
     font-size:15px;
+    letter-spacing: 4px;
 }
 
 .page-navigation__item a:hover
 {
     color:RGB(226, 0, 134);
 }
+
 /* Home  */
 .band-members{
     display: flex;
 }
 
 .band-members__image {
-    margin-top: 250px;
+    margin-top: 300px;
 }
 
 .band-members__name{
@@ -177,10 +123,9 @@ h2 {
     margin-top:5px;
     letter-spacing: 4px;
     font-size:13px;
-    font-weight: light;
+    font-weight: 300;
     color: rgba(204, 200, 255, 0.5) 
 }
-
 
 
 
@@ -194,7 +139,7 @@ h2 {
     right: 5%;
     top:20%;
     z-index: 2;
-    border-top: 4px solid #EC008C;
+    border-top: 3px solid #EC008C;
 }
 
 .about-section__desc{
@@ -204,16 +149,16 @@ h2 {
     width:26%;
     padding: 2.2% ;
     z-index: 3;
-    border-bottom: 4px solid #EC008C;
+    border-bottom: 3px solid #EC008C;
     background-color: RGB(37, 13, 49);
     display: inline-block;
 }
 
 .about-section__desc-header{
-    margin-bottom:0;
+    margin-bottom:30px;
     font-weight: 600;
     font-size:13px;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     color: rgba(204, 200, 255, 1);
 }
 
@@ -221,20 +166,21 @@ h2 {
     font-size:13px;
     letter-spacing: 2px;
     color: rgba(204, 200, 255, 0.6);
+    font-weight: lighter;
 }
 
 /* Concerts grid  */
 
 .concerts { 
-    padding-left: 100px;
+    padding-left: 25%;
+    padding-right: 100px;
     display: grid;
     grid-template-columns: 55% 55%;
-    grid-template-rows:  45% 45%;
-    grid-gap: 20px;
+    grid-gap: 40px;
     align-items: stretch;
     }
 article.concerts__item img  {
-    border-bottom: 4px solid #EC008C;
+    border-bottom: 3px solid #EC008C;
     max-width: 100%;
   }
 
@@ -242,14 +188,15 @@ article.concerts__item img  {
     display:flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .concerts__date{
-    margin-bottom:0;
+    margin-bottom:3px;
     font-weight: bold;
     font-size:15px;
     letter-spacing: 5px;
-    color: rgba(204, 200, 255, 0.8)
+    color: rgba(204, 200, 255, 1)
 }
 
 .concerts__location{
@@ -258,39 +205,39 @@ article.concerts__item img  {
     letter-spacing: 5px;
     color: rgba(204, 200, 255, 0.5)
 }
-/* Photos grid */
-
-.gallery { 
-    /* margin-left:?; */
-    display: grid;
-    grid-template-columns:  1fr 1fr 1fr;
-    grid-gap: 15px;
-    align-items: stretch;
-    }
-li .gallery__image {
-    border-top: 4px solid #EC008C;
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-  }
 
   /* Video  */
 
   iframe {
-
     position: absolute;
     right: 5%;
     top: 15%;
     margin-top:3%;
     z-index: 2;
-    border-top: 4px solid #EC008C;
+    border-top: 3px solid #EC008C;
 }
+
+/* Photos grid */
+
+.gallery { 
+    margin-left:10%;
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+    grid-gap: 25px;
+    align-items: stretch;
+    }
+li .gallery__image {
+    border-top: 3px solid #EC008C;
+    width: 100%;
+  }
+
 
 /* Contact  */
 
 .contact-section__info{
     display:flex;
     align-items: center;
+    margin-left:10%;
 }
 
 address {
@@ -303,6 +250,7 @@ address {
 }
 
 .form {
+    margin-left:10%;
     margin-top: 4%;
     font-size:13px;
     letter-spacing: 2px;
@@ -311,14 +259,14 @@ address {
     font-style: normal;
 }
 label { 
-    margin: 5px 0;
+    margin: 10px 0;
 }
 input, label {
     display:block;
 }
 
 .form__input {
-    background-color: RGB(44, 25, 53);
+    background-color: #44204c;
     border:transparent ;
     border-radius: 5px;
     padding: 18px; 
@@ -331,7 +279,7 @@ input, label {
 .button{
     border:transparent ;
     border-radius: 5px;
-    background-color: RGB(44, 25, 53);
+    background-color:#44204c;
     padding: 9px; 
     width: 130px;
     text-transform: uppercase;
@@ -348,6 +296,9 @@ button:hover{
     background-color: RGB(32, 11, 42);
     padding: 20px;
     border-radius: 25px;
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
 }
 
 .social-links a:hover{
