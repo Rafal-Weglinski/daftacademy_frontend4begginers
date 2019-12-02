@@ -1,16 +1,35 @@
-/* reset  */
+/*
+Przeglądarki internetowe nadają znacznikom HTML wartości początkowe,
+które się różnią w zależności od producenta (np. Chrome, Firefox, Opera, Internet Explorer, Microsoft Edge).
+Dlatego popularną praktyką jest tworzenie tzw. resetów,
+czyli plików CSS zawierających reguły, które nadpisują te wartości,
+aby były one jednolite niezalenie od przeglądarki.
+
+Więcej na ten temat: https://cssreset.com/what-is-a-css-reset/
+*/
+
 * {
     box-sizing: border-box;
 }
 
+
 body {
     margin: 0;
     padding: 0;
-}
+    /*
+    "background-image" - ustawiamy obrazek z projektu graficznego jako tło całej witryny
+    "background-size: cover" sprawia, że obrazek tła będzie skalowany tak, żeby wypełniać ekran w całości
+        niezależnie od proporcji ekranu
+    ""
 
-a{
-    color: white;
-    text-decoration: none;
+    */
+    background-image: url('./images/background.svg');
+    /*
+    */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1, h2, h3 {
@@ -23,7 +42,14 @@ ul {
     padding: 0;
 }
 
-/* Screen readers */
+/*
+ZAGADNIENIE PONADPROGRAMOWE
+
+Rekomendowany zestaw właściwości, które pozwalają na ukrycie tekstu w taki sposób,
+że będzie niewidoczny do standardowego użytkownika, a czytniki ekranowe wciąż będą go czytać.
+
+Więcej na ten temat: https://webaim.org/techniques/css/invisiblecontent/
+*/
 .screen-reader-only {
     position: absolute;
     left: -10000px;
@@ -33,285 +59,559 @@ ul {
     overflow: hidden;
 }
 
+/*
+######################################
+TYPOGRAFIA
+######################################
+*/
 
-/* Every Section has 100% height */
-.content-section {
-    min-height: 100vh;
-}
-
-
-/* General  */
-.content-section {
-    padding: 0 5% 0 20%;
-}
-
-.content-section__header{
-    padding: 10% 0 4% 0 ;
-}
-
-body{
-    font-family:  "Helvetica", "OpenSans";
-    background-image: url(images/background.svg);
-    background-attachment: fixed;
-    background-size: cover;
-}
-
-
-h1 {
-    font-weight: bold; 
-    font-size:28px;
-    text-align:Right; 
-    letter-spacing: 4.5px;
-    text-transform: uppercase;
-    color:#EC008C;
-}
-
-h2 {
-    font-weight: bold; 
-    font-size:15px;
-    text-align:left; 
-    letter-spacing: 3.8px;
-    text-transform: uppercase
-}
-
-
-/* Nav  */
-.page-header {
-    position: fixed;
-    top: 50px;
-    left: 50px;
-    z-index: 1;
-}
-
-.page-navigation__items{
-    margin-top:20px;
-}
-
-.page-navigation__item a{
-    text-transform: uppercase;
-    color: rgb(159, 11, 107);
-    line-height: 30px;
-    font-weight: 700;
-    font-size:15px;
-    letter-spacing: 4px;
-}
-
-.page-navigation__item a:hover
-{
-    color:RGB(226, 0, 134);
-}
-
-/* Home  */
-.band-members{
-    display: flex;
-}
-
-.band-members__image {
-    margin-top: 300px;
-}
-
-.band-members__name{
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size:15px;
-    font-weight: bold;
+body {
     color: rgba(204, 200, 255, 0.8);
-    margin-bottom: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
 }
 
-.band-members__desc{
-    margin-top:5px;
-    letter-spacing: 4px;
-    font-size:13px;
-    font-weight: 300;
-    color: rgba(204, 200, 255, 0.5) 
+a {
+    color: #EF008E;
+    text-decoration: none;
 }
 
+/*
+######################################
+PRZYCISKI
+######################################
+*/
 
+.button {
+    padding: 7px 15px;
+    border-radius: 3px;
+    background-color: rgba(204, 200, 255, 0.1);
+    border-color: rgba(204, 200, 255, 0.1);
 
-/* About */
-.about-section, .video-section{
-    position: relative;
-}
-.about-section__image{
-    width:45%;
-    position: absolute;
-    right: 5%;
-    top:20%;
-    z-index: 2;
-    border-top: 3px solid #EC008C;
-}
-
-.about-section__desc{
-    position: absolute;
-    left: 30%;
-    top:50%;
-    width:26%;
-    padding: 2.2% ;
-    z-index: 3;
-    border-bottom: 3px solid #EC008C;
-    background-color: RGB(37, 13, 49);
-    display: inline-block;
-}
-
-.about-section__desc-header{
-    margin-bottom:30px;
+    color: rgba(204, 200, 255, 0.8);
+    font-size: 12px;
     font-weight: 600;
-    font-size:13px;
-    letter-spacing: 4px;
-    color: rgba(204, 200, 255, 1);
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    cursor: pointer;
 }
 
-.about-section__desc-details{
-    font-size:13px;
-    letter-spacing: 2px;
-    color: rgba(204, 200, 255, 0.6);
-    font-weight: lighter;
+.button--contact {
+    margin-top: 20px;
 }
 
-/* Concerts grid  */
+/*
+######################################
+FORMULARZE
+######################################
+*/
 
-.concerts { 
-    padding-left: 25%;
-    padding-right: 100px;
-    display: grid;
-    grid-template-columns: 55% 55%;
-    grid-gap: 40px;
-    align-items: stretch;
-    }
-article.concerts__item img  {
-    border-bottom: 3px solid #EC008C;
-    max-width: 100%;
-  }
-
-.concerts__info{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 20px;
+.form__field {
+    margin-bottom: 10px;
 }
 
-.concerts__date{
-    margin-bottom:3px;
-    font-weight: bold;
-    font-size:15px;
-    letter-spacing: 5px;
-    color: rgba(204, 200, 255, 1)
-}
-
-.concerts__location{
-    margin-top:0;
-    font-size:13px;
-    letter-spacing: 5px;
-    color: rgba(204, 200, 255, 0.5)
-}
-
-  /* Video  */
-
-  iframe {
-    position: absolute;
-    right: 5%;
-    top: 15%;
-    margin-top:3%;
-    z-index: 2;
-    border-top: 3px solid #EC008C;
-}
-
-/* Photos grid */
-
-.gallery { 
-    margin-left:10%;
-    display: grid;
-    grid-template-columns:  1fr 1fr 1fr;
-    grid-gap: 25px;
-    align-items: stretch;
-    }
-li .gallery__image {
-    border-top: 3px solid #EC008C;
-    width: 100%;
-  }
-
-
-/* Contact  */
-
-.contact-section__info{
-    display:flex;
-    align-items: center;
-    margin-left:10%;
-}
-
-address {
-    margin-left: 10%;
-    font-size:13px;
-    letter-spacing: 2px;
-    color: rgba(204, 200, 255, 0.6);
-    font-weight: 500;
-    font-style: normal;
-}
-
-.form {
-    margin-left:10%;
-    margin-top: 4%;
-    font-size:13px;
-    letter-spacing: 2px;
-    color: rgba(204, 200, 255, 0.8);
-    font-weight: 500;
-    font-style: normal;
-}
-label { 
-    margin: 10px 0;
-}
-input, label {
-    display:block;
+.form__label {
+    display: block;
+    margin-bottom: 9px;
 }
 
 .form__input {
-    background-color: #44204c;
-    border:transparent ;
-    border-radius: 5px;
-    padding: 18px; 
+    display: block;
+    height: 35px;
     width: 300px;
-    height: 10px;
-    color: rgba(204, 200, 255, 0.8);
-    margin-bottom:30px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(219, 216, 251, 0.1);
 }
 
-.button{
-    border:transparent ;
-    border-radius: 5px;
-    background-color:#44204c;
-    padding: 9px; 
-    width: 130px;
-    text-transform: uppercase;
-    color: rgba(204, 200, 255, 0.8);
-}
+/*
+######################################
+GŁÓWNY LAYOUT STRONY
+######################################
+*/
 
-button:hover{
-    background-color: RGB(60, 43, 77);
-}
+/*
+Ustawiając sekcje nagłówka i stopki w pozycji 'fixed' sprawiamy,
+że niezależnie od pozycji paska przewijania elementy te będą znajdowały się
+w tej samej pozycji względem okna przeglądarki.
+Natomiast pozycję tę ustawiamy za pomocą parametrów 'top', 'bottom', 'right', 'left'.
+*/
 
-/* Footer */
+@media (min-width: 600px){
+ .page-header {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+
+}
 
 .page-footer {
-    background-color: RGB(32, 11, 42);
-    padding: 20px;
-    border-radius: 25px;
     position: fixed;
     bottom: 50px;
     left: 50px;
-}
-
-.social-links a:hover{
-    color:RGB(226, 0, 134);
 } 
-.social-links a{
-    color: rgb(159, 11, 107);
-    text-decoration: none;
-
+    
 }
 
-.social-links {
-    font-size: 20px;
+/* @media (max-width: 600px){
+    .page-footer{
+        position: static;
+        
+    }
+    .page-header{
+        position: static;
+
+    }
+}  */
+
+/*
+Lewy margines ustawiony na kontenerze z główną zawartością strony sprawia,
+że nie będzie ona nachodzić na nagłówek i stopkę niezależnie od pozycji paska przewijania.
+Na projekcie graficznym sekcja menu ma szerokość około 170px i jest oddalona od krawędzi ekranu
+o 50px, więc można założyć, że 220px marginesu będzie wartością stosunkowo bezpieczną.
+Z kolei spady (padding) nadane na kontener wyznaczają minimalną odległość, na jaką będzie oddalona
+treść strony od otaczających ją granic kontenera (wartość "0 10%" jest
+skrótem od padding-top: 0, padding-bottom: 0, padding-left: 10%, padding-right: 10%).
+Więcej skrótów paddingu: https://developer.mozilla.org/en-US/docs/Web/CSS/padding
+Właściwość "text-align: right" przykleja zawartość do prawej strony
+(oddziałuje na elementy, które są elementami inline'owymi, np. tekst, znaczniki <a>, <span> czy elementy z nadanym stylem "display: inline-block").
+*/
+
+@media (min-width: 600px) {
+.page-content {
+    margin-left: 220px;
+    padding: 0 10%;
+}
+}
+/*
+######################################
+NAWIGACJA
+######################################
+*/
+
+.page-navigation__items {
+    padding-top: 15px;
+}
+
+.page-navigation__link {
+    line-height: 30px;
+    text-transform: uppercase;
+    letter-spacing: 6.7px;
+}
+
+/*
+######################################
+LINKI DO SOCIAL MEDIA
+######################################
+*/
+
+@media (max-width: 599px){
+.social-links{
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  list-style: none;
+  margin: 0;
+}
+.social-links__item{
+    padding:5%;
+}
+}
+
+@media (min-width: 600px){
+
+.social-links__item + .social-links__item {
+    margin-top: 15px;
+}
+
+.social-links__img {
+    width: 20px;
+    height: 20px;
+}
+
+}
+/*
+######################################
+STYLE WSPÓLNE DLA WSZYSTKICH SEKCJI
+######################################
+*/
+
+/*
+Projekt graficzny zakłada, że każda sekcja strony będzie wypełniać całą wysokość okna przeglądarki
+lub więcej, jeśli zawartość danej sekcji jest wyższa. Dlatego świetnym rozwiązaniem
+będzie użycie jednostki "vh", która oznacza 1% wysokości okna przeglądarki z właściwością "min-height",
+która wymusza wysokość elementu na zadaną wartość lub wyższą.
+
+Następnie sekcje zostają zdefiniowane jako kontener flexbox (display: flex) co pozwala
+na większą kontrolę nad zachowaniem elementów wewnątrz.
+Zakładamy, ze każda sekcja strony ma bazową strukturę w formacie:
+
+    <section class="content-section">
+        <h2 class="content-section__header">{nagłówek sekcji}</h2>
+        <div class="content-section__body">
+            {zawartość sekcji}
+        </div>
+    </section>
+*/
+
+@media (min-width: 600px){
+.content-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    min-height: 100vh;
+}}
+
+
+
+
+
+.content-section__header {
+    margin-bottom: 60px;
+    color: #EF008E;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 4.5px;
+    text-transform: uppercase;
+}
+
+.content-section__body {
+    flex-grow: 1;
+}
+
+@media (max-width: 600px){
+    .content-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 0;
+       
+    }.content-section__header{
+        margin-bottom: 45px;
+    }}
+
+/*
+######################################
+SEKCJA "HOME"
+######################################
+*/
+
+.content-section.home-section {
+    align-items: center;
+}
+
+.band-members {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+@media (max-width: 600px) {
+    .band-members{
+    flex-direction: column;
+}
+}
+/*
+Tymczasowo ukrywamy tę sekcję, zajmiemy się nią na następnych zajęciach.
+*/
+.band-members__name,
+.band-members__desc {
+    display: none;
+}
+
+/*
+######################################
+SEKCJA "ABOUT"
+######################################
+*/
+
+/*
+Żeby ustawić opis zespołu w rogu zdjęcia, można zastosować popularną sztuczkę z pozycjonowaniem.
+Wykorzystuje ona właściwość elementów z "position: absolute", których położenie jest ustalane
+względem najbliższego mu rodzica, który jest pozycjonowany (ma ustawione "position" na inne
+niż "static", czyli "absolute", "relative", "fixed" lub "sticky").
+
+Dlatego gdy na jego rodzica "about" ustawimy "position: relative" (które bez parametrów
+dodatkowych top, left, bottom, right, nic nie zmienia w jego pozycji), to zawarty w nim
+element "about__desc" ustawia się absolutnie względem niego.
+
+Gdy dodamy wartości "left: -290px" i "bottom: -115px", wtedy "about__desc" będzie wystawać
+z lewego dolnego rogu "about" dokładnie o te odległości.
+
+Natomiast aby nie dopuścić do sytuacji, że wystający "about__desc" nachodził
+na sąsiadujące sekcje na stronie, nadajemy "about" marginesy adekwatne do odległości
+podane przy pozycjonowaniu "about_desc".
+*/
+
+@media (min-width: 600px){
+.about {
+    position: relative;
+    margin-left: 290px;
+    margin-bottom: 115px;
+}
+.about__image {
+    max-width: 80%;
+    border-top: 3px solid #EF008E;
+    margin: 0 10%;
+}
+}
+
+
+
+
+
+.about__desc-header {
+    margin-bottom: 30px;
+    color: #CCC8FF;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+}
+@media (max-width: 399px){
+.about__desc{
+
+    background-color: #25072e;
+    border-bottom: 3px solid #EF008E;
     text-align: center;
-    line-height: 1.7;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top:15px;
 }
+.about__image {
+    max-width: 80%;
+    border-top: 3px solid #EF008E;
+    margin:0 10% 0 10%;
+}
+}
+
+@media (min-width: 400px){
+.about__desc {
+    position: absolute;
+    left: -290px;
+    bottom: -115px;
+    width: 380px;
+    padding: 30px;
+    background-color: #25072e;
+    border-bottom: 3px solid #EF008E;
+}
+
+.about__image {
+    max-width: 100%;
+    border-top: 3px solid #EF008E;
+}}
+
+/*
+######################################
+SEKCJA "CONCERTS"
+######################################
+*/
+
+.concerts {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 20px;
+    row-gap: 45px;
+}
+
+@media (min-width: 400px){
+.concerts {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 55px;
+    row-gap: 45px;
+}
+}
+
+
+.concerts__image {
+    width: 100%;
+    border-bottom: 3px solid #EF008E;
+}
+
+
+
+.concerts__info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.concerts__info-base {
+    flex-grow: 1;
+}
+
+.concerts__date {
+    margin: 0;
+    color: #CCC8FF;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3.8px;
+}
+
+.concerts__location {
+    margin: 0;
+    letter-spacing: 3.8px;
+}
+
+/*
+######################################
+SEKCJA "VIDEO"
+######################################
+*/
+
+.embedded-video {
+    border-top: 3px solid #EF008E;
+    width:100%;
+    
+}
+
+@media (max-width: 600px){
+    .embedded-video{
+        height: 300px;
+    }
+}
+
+/*
+######################################
+SEKCJA "PHOTOS"
+######################################
+*/
+
+
+/* Grid  */
+@supports (display: grid)  {
+
+    .gallery {
+        width: 80%;
+        display: grid;
+        gap: 20px;
+        padding:0;
+    }
+
+    @media (min-width: 600px) {
+        .gallery { grid-template-columns: repeat(2, 1fr); }
+        .gallery__image {
+            width: 100%;
+      }}
+    
+      @media (min-width: 900px) {
+        .gallery { grid-template-columns: repeat(3, 1fr); }
+      }
+    
+    
+      @media (max-width: 599px){
+        .gallery__image {
+            width: 100%;}
+        .gallery{
+            margin-bottom: 24px;
+    
+            
+        }}
+} 
+
+
+.gallery__image {
+    border-top: 3px solid #EF008E;
+}
+
+
+
+/* Wsteczne wsparcie dla IE  */
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    
+.gallery{
+    width: 100%;
+    padding-left:140px;
+}
+
+.gallery__item{
+    float:left;
+    display:inline;
+    width:30%;
+    margin: 5px;
+    
+}
+
+.gallery__image{
+    width:100%;
+    margin:0;
+    padding:0;
+}
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) and (max-width: 600px) {
+    .gallery{
+        padding: 0;
+        margin:auto;
+    }
+    .gallery__item{
+        width:80%;
+        margin:20px 10%;
+    }
+  }
+
+
+
+
+
+
+/*
+######################################
+SEKCJA "CONTACT"
+######################################
+*/
+
+.contact {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    
+}
+
+.contact__img {
+    max-width: 100%;
+}
+
+@media (min-width:600px){
+.contact__address {
+    padding: 70px;
+    font-style: normal;
+}
+
+.contact__form {
+    flex-basis: 50%;
+    padding-top: 40px;
+    margin-bottom: 100px;
+}}
+@media (max-width:599px){
+    .contact__address {
+        padding: 40px 0 20px;
+        font-style: normal;
+        margin:auto;
+        text-align: center;;
+    }
+    
+    .contact__form {
+        flex-basis: 50%;
+        padding-top: 40px;
+        margin: 0 auto 40px;
+        text-align:center;
+    }
+    
+}
+
+
+
