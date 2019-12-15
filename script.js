@@ -8,9 +8,6 @@ menuButton.addEventListener('click', (e) => {
     menuButton.classList.toggle('not-active');
 });
 
-//Animte hamburger toggle
-
-
 
 // Mark ticket as bought
 const concerts = document.querySelector('#concerts');

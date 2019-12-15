@@ -622,14 +622,7 @@ SEKCJA "CONTACT"
     }
 }
 
-
 /* Hamburger  */
-/* /* // Menu
-// Ostyluj przycisk otwierający menu, tak aby wygladał jak:
-// - hamburger (trzy poziome paski) - przy menu zamkniętym
-// - znak X - przy menu otwartym
-// Dodaj tranzycje zmiany hamburgera w X oraz tranzycje otwarcia menu. */
-
 
 #hamburger span {
     display: block;
@@ -674,87 +667,71 @@ SEKCJA "CONTACT"
   @keyframes top {
     From {
       top: 0;
-      transform: rotate(0);
-    }
+      transform: rotate(0);}
     To {
       top: 0px;
-      transform: rotate(43deg);
-    }
+      transform: rotate(43deg);}
   }
   
   @keyframes top-2 {
     From {
       top: 0px;
-      transform: rotate(43deg);
-    }
+      transform: rotate(43deg);}
     To {
       top: 0;
-      transform: rotate(0deg);
-    }
+      transform: rotate(0deg);}
   }
   
   @keyframes bottom {
     From {
       bottom: 0;
-      transform: rotate(0);
-    }
+      transform: rotate(0);}
     To {
       bottom: 0px;
-      transform: rotate(-45deg);
-    }
+      transform: rotate(-45deg);}
   }
   
   @keyframes bottom-2 {
     From {
       bottom: 0px;
-      transform: rotate(-45deg);
-    }
+      transform: rotate(-45deg);}
     To {
       bottom: 0;
-      transform: rotate(0);
-    }
+      transform: rotate(0);}
   }
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   @keyframes scaled {
     50% {
-      transform: scale(0);
-    }
+      transform: scale(0);}
     100% {
-      transform: scale(0);
-    }
+      transform: scale(0);}
   }
   
   @keyframes scaled-2 {
     0% {
-      transform: scale(0);
-    }
+      transform: scale(0);}
     50% {
-      transform: scale(0);
-    }
+      transform: scale(0);}
     100% {
-      transform: scale(1);
-    }
+      transform: scale(1);}
   }
 
 
 
+  /* Show Menu  */
 
-
+  @keyframes show {
+    from{transform: scale(0);}
+    To {transform: scale(1);}   
+    }
+    
+    .page-navigation--visible{
+        animation: ease .7s show forwards;
+    }
+    
 /* Zdjęcie */
+
+
 @keyframes gallery_in{
     0% {transform: scale(1) rotate(0);}
     60% {transform: scale(1.4) ;filter:saturate(0);}
@@ -763,26 +740,19 @@ SEKCJA "CONTACT"
 
 @keyframes gallery_out{
     100%{transform: scale(1) rotate(0);}
-    /* 50% {transform: scale(1.5) rotate(0);filter:saturate(100%);} */
     0% {transform: scale(1.45) rotate(0); filter:saturate(0);}
 }
-
+@media screen and (min-width: 450px){
 .gallery__item{
-    animation-duration: 0.1s;
-    animation-fill-mode: both;
+    animation: ease 0.1s gallery_out both;
     filter:saturate(10%);
-    /* animation-direction: alternate; */
-    animation-name: gallery_out;
 }
 
 .gallery__item:hover{
-    animation-delay:0.4s;
-    animation-name: gallery_in;
+    animation: ease .7s gallery_in forwards .3s;
     z-index: 1;
-    animation-duration: 0.7s;
 }
-
-
+}
 
  
 
