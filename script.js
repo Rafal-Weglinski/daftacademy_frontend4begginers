@@ -1,37 +1,41 @@
+// Show/hide page navigation
+const menuButton = document.querySelector('#hamburger');
 
-// hamburger 
-{
-const toggle = document.querySelector('.page-toggle');
-const nav = document.querySelector(".page-navigation");
-const link = document.querySelectorAll('.page-navigation__link');
+menuButton.addEventListener('click', (e) => {
+    const pageNavigation = document.querySelector('.page-navigation');
+    pageNavigation.classList.toggle('page-navigation--visible');
+    menuButton.classList.toggle('active');
+    menuButton.classList.toggle('not-active');
+});
 
-toggle.addEventListener("click", () =>{
-  nav.classList.toggle("page-navigation-mobile-active");
-})
-
-link.forEach(item => {
-  item.addEventListener('click', event => {
-    nav.classList.remove("page-navigation-mobile-active");
-  })
-})
-}
-// tickets
-const ticket = document.querySelectorAll(".concerts__button");
-
-ticket.forEach(item => {
-  item.addEventListener('click', event =>{
-  item.innerHTML = "Have fun!";
-})})
+//Animte hamburger toggle
 
 
-// Console.log form values 
 
-{
-const submit = document.querySelector(".button__contact");
+// Mark ticket as bought
+const concerts = document.querySelector('#concerts');
 
-submit.addEventListener("click", () => {
-  const mail = document.querySelector("#email");
-  const topic = document.querySelector("#topic");
-  console.log(mail.value, topic.value);
-})
-}
+concerts.addEventListener('click', (e) => {
+    if (e.target.classList.contains('button--buy-ticket')) {
+        const buyTicketButton = e.target;
+        const haveFunText = document.createElement('p');
+        haveFunText.textContent = 'Have fun!';
+
+        const buttonContainer = buyTicketButton.parentElement;
+        buttonContainer.insertBefore(haveFunText, buyTicketButton);
+        buyTicketButton.remove();
+        // OR
+        // buyTicketButton.replaceWith(haveFunText);
+    }
+});
+
+// Log form data
+const contactForm = document.querySelector('.contact__form');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const formObject = Object.fromEntries(formData);
+    console.log(formObject);
+});
+
